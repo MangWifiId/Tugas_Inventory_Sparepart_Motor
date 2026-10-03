@@ -436,40 +436,72 @@ func simpanSemuaData() error {
 
 func startAPI() {
 
-	http.HandleFunc(
-		"/api/sparepart",
-		getSpareparts,
-	)
+	mux := http.NewServeMux()
 
-	http.HandleFunc(
-		"/api/sparepart/tambah",
-		postSparepart,
-	)
+	// ============================================================
+	// GET SEMUA SPAREPART
+	// ============================================================
 
-	http.HandleFunc(
-		"/api/sparepart/",
-		func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/sparepart", func(w http.ResponseWriter, r *http.Request) {
 
-			switch r.Method {
+		if r.Method != http.MethodGet {
+			http.Error(
+				w,
+				"Method tidak didukung",
+				http.StatusMethodNotAllowed,
+			)
+			return
+		}
 
-			case http.MethodPut:
-				putSparepart(w, r)
+		getSpareparts(w, r)
+	})
 
-			case http.MethodDelete:
-				deleteSparepart(w, r)
+	// ============================================================
+	// POST TAMBAH SPAREPART
+	// ============================================================
 
-			default:
-				http.Error(
-					w,
-					"Method tidak didukung",
-					http.StatusMethodNotAllowed,
-				)
-			}
-		},
-	)
+	mux.HandleFunc("/api/sparepart/tambah", func(w http.ResponseWriter, r *http.Request) {
 
-	// HTML
-	http.Handle(
+		if r.Method != http.MethodPost {
+			http.Error(
+				w,
+				"Method tidak didukung",
+				http.StatusMethodNotAllowed,
+			)
+			return
+		}
+
+		postSparepart(w, r)
+	})
+
+	// ============================================================
+	// PUT DAN DELETE
+	// ============================================================
+
+	mux.HandleFunc("/api/sparepart/", func(w http.ResponseWriter, r *http.Request) {
+
+		switch r.Method {
+
+		case http.MethodPut:
+			putSparepart(w, r)
+
+		case http.MethodDelete:
+			deleteSparepart(w, r)
+
+		default:
+			http.Error(
+				w,
+				"Method tidak didukung",
+				http.StatusMethodNotAllowed,
+			)
+		}
+	})
+
+	// ============================================================
+	// WEBSITE
+	// ============================================================
+
+	mux.Handle(
 		"/",
 		http.FileServer(
 			http.Dir("./web"),
@@ -486,7 +518,7 @@ func startAPI() {
 	fmt.Println("DELETE : http://localhost:8080/api/sparepart/{kode}")
 	fmt.Println("======================================")
 
-	err := http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":8080", mux)
 
 	if err != nil {
 		fmt.Println("Server error:", err)
