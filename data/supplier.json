@@ -1,0 +1,72 @@
+[
+  {
+    "kode_barang": "BRG-001",
+    "supplier": {
+      "nama": "Astra Honda",
+      "kontak": {
+        "telepon": "081234567890",
+        "email": "supplier@astra.com"
+      }
+    }
+  },
+  {
+    "kode_barang": "BRG-002",
+    "supplier": {
+      "nama": "NGK Indonesia",
+      "kontak": {
+        "telepon": "081298765432",
+        "email": "ngk@supplier.com"
+      }
+    }
+  },
+  {
+    "kode_barang": "BRG-04",
+    "supplier": {
+      "nama": "5",
+      "kontak": {
+        "telepon": "1",
+        "email": "1"
+      }
+    }
+  },
+  {
+    "kode_barang": "BRG-004",
+    "supplier": {
+      "nama": "Astra Honda",
+      "kontak": {
+        "telepon": "089669789888",
+        "email": "-"
+      }
+    }
+  },
+  {
+    "kode_barang": "BRG-006",
+    "supplier": {
+      "nama": "",
+      "kontak": {
+        "telepon": "",
+        "email": ""
+      }
+    }
+  },
+  {
+    "kode_barang": "BRG-007",
+    "supplier": {
+      "nama": "Astra Honda",
+      "kontak": {
+        "telepon": "081234567890",
+        "email": "supplier@astra.com"
+      }
+    }
+  },
+  {
+    "kode_barang": "BRG-008",
+    "supplier": {
+      "nama": "Astra Honda",
+      "kontak": {
+        "telepon": "081234567890",
+        "email": "supplier@astra.com"
+      }
+    }
+  }
+]

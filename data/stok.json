@@ -1,0 +1,58 @@
+[
+  {
+    "kode_barang": "BRG-001",
+    "stok": {
+      "jumlah": 25,
+      "satuan": "Botol",
+      "minimum": 10
+    }
+  },
+  {
+    "kode_barang": "BRG-002",
+    "stok": {
+      "jumlah": 40,
+      "satuan": "Pcs",
+      "minimum": 15
+    }
+  },
+  {
+    "kode_barang": "BRG-04",
+    "stok": {
+      "jumlah": 3,
+      "satuan": "2",
+      "minimum": 2
+    }
+  },
+  {
+    "kode_barang": "BRG-004",
+    "stok": {
+      "jumlah": 3,
+      "satuan": "Pcs",
+      "minimum": 5
+    }
+  },
+  {
+    "kode_barang": "BRG-006",
+    "stok": {
+      "jumlah": 0,
+      "satuan": "",
+      "minimum": 0
+    }
+  },
+  {
+    "kode_barang": "BRG-007",
+    "stok": {
+      "jumlah": 20,
+      "satuan": "Pcs",
+      "minimum": 5
+    }
+  },
+  {
+    "kode_barang": "BRG-008",
+    "stok": {
+      "jumlah": 20,
+      "satuan": "Pcs",
+      "minimum": 5
+    }
+  }
+]

@@ -1,0 +1,136 @@
+[
+  {
+    "no": 1,
+    "kode_barang": "BRG-001",
+    "identitas": {
+      "nama": "Oli Mesin 10W-40",
+      "kategori": "Oli",
+      "merek": "AHM"
+    },
+    "spesifikasi": {
+      "tipe_motor": [
+        "Beat",
+        "Vario",
+        "Scoopy"
+      ],
+      "ukuran": {
+        "volume": "1 Liter",
+        "viskositas": "10W-40"
+      }
+    }
+  },
+  {
+    "no": 2,
+    "kode_barang": "BRG-002",
+    "identitas": {
+      "nama": "Busi",
+      "kategori": "Kelistrikan",
+      "merek": "NGK"
+    },
+    "spesifikasi": {
+      "tipe_motor": [
+        "Beat",
+        "Vario",
+        "Scoopy"
+      ],
+      "ukuran": {
+        "volume": "-",
+        "viskositas": "-"
+      }
+    }
+  },
+  {
+    "no": 3,
+    "kode_barang": "BRG-04",
+    "identitas": {
+      "nama": "Lampu",
+      "kategori": "Aksesoris",
+      "merek": "Honda"
+    },
+    "spesifikasi": {
+      "tipe_motor": [
+        "honda"
+      ],
+      "ukuran": {
+        "volume": "1",
+        "viskositas": "2"
+      }
+    }
+  },
+  {
+    "no": 4,
+    "kode_barang": "BRG-004",
+    "identitas": {
+      "nama": "Lampu",
+      "kategori": "Kelistrikan",
+      "merek": "AHM"
+    },
+    "spesifikasi": {
+      "tipe_motor": [
+        "Beat",
+        "PCX"
+      ],
+      "ukuran": {
+        "volume": "4",
+        "viskositas": "3"
+      }
+    }
+  },
+  {
+    "no": 6,
+    "kode_barang": "BRG-006",
+    "identitas": {
+      "nama": "Kampas Rem",
+      "kategori": "Rem",
+      "merek": "AHM"
+    },
+    "spesifikasi": {
+      "tipe_motor": [
+        "Beat",
+        "Vario"
+      ],
+      "ukuran": {
+        "volume": "-",
+        "viskositas": "-"
+      }
+    }
+  },
+  {
+    "no": 7,
+    "kode_barang": "BRG-007",
+    "identitas": {
+      "nama": "Kampas Rem",
+      "kategori": "Rem",
+      "merek": "AHM"
+    },
+    "spesifikasi": {
+      "tipe_motor": [
+        "Beat",
+        "Vario"
+      ],
+      "ukuran": {
+        "volume": "-",
+        "viskositas": "-"
+      }
+    }
+  },
+  {
+    "no": 8,
+    "kode_barang": "BRG-008",
+    "identitas": {
+      "nama": "Kampas Rem",
+      "kategori": "Rem",
+      "merek": "AHM"
+    },
+    "spesifikasi": {
+      "tipe_motor": [
+        "Beat",
+        "Vario"
+      ],
+      "ukuran": {
+        "volume": "-",
+        "viskositas": "-"
+      }
+    }
+  }
+]

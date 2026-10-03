@@ -1,0 +1,72 @@
+[
+  {
+    "kode_barang": "BRG-001",
+    "lokasi_gudang": {
+      "gudang": "Gudang A",
+      "rak": {
+        "kode": "A-01",
+        "lantai": 1
+      }
+    }
+  },
+  {
+    "kode_barang": "BRG-002",
+    "lokasi_gudang": {
+      "gudang": "Gudang A",
+      "rak": {
+        "kode": "A-02",
+        "lantai": 1
+      }
+    }
+  },
+  {
+    "kode_barang": "BRG-04",
+    "lokasi_gudang": {
+      "gudang": "3",
+      "rak": {
+        "kode": "3",
+        "lantai": 4
+      }
+    }
+  },
+  {
+    "kode_barang": "BRG-004",
+    "lokasi_gudang": {
+      "gudang": "Gudang A",
+      "rak": {
+        "kode": "A-02",
+        "lantai": 3
+      }
+    }
+  },
+  {
+    "kode_barang": "BRG-006",
+    "lokasi_gudang": {
+      "gudang": "",
+      "rak": {
+        "kode": "",
+        "lantai": 0
+      }
+    }
+  },
+  {
+    "kode_barang": "BRG-007",
+    "lokasi_gudang": {
+      "gudang": "Gudang A",
+      "rak": {
+        "kode": "A-03",
+        "lantai": 1
+      }
+    }
+  },
+  {
+    "kode_barang": "BRG-008",
+    "lokasi_gudang": {
+      "gudang": "Gudang A",
+      "rak": {
+        "kode": "A-03",
+        "lantai": 1
+      }
+    }
+  }
+]

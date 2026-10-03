@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Sparepart Motor</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin: 3px;
+            cursor: pointer;
+        }
+
+        input,
+        select {
+            padding: 7px;
+            margin: 5px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .form-container {
+            display: none;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .motor {
+            display: flex;
+            gap: 15px;
+            margin: 8px 0;
+        }
+
+        .motor label {
+            width: auto;
+        }
+
+        .motor input {
+            width: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #eee;
+        }
+
+        .search {
+            margin-top: 20px;
+        }
+
+        .status {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Inventory Sparepart Motor</h1>
+
+    <button onclick="bukaFormTambah()">
+        + Tambah Barang
+    </button>
+
+    <div class="status">
+        Status API:
+        <span id="statusAPI">Mengecek...</span>
+    </div>
+
+    <div class="search">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Cari kode, nama, kategori, atau merek..."
+            onkeyup="cariBarang()"
+        >
+    </div>
+
+    <!-- FORM TAMBAH / EDIT -->
+    <div id="formContainer" class="form-container">
+
+        <h2 id="judulForm">Tambah Barang</h2>
+
+        <form id="formBarang">
+
+            <div class="form-group">
+                <label>Nama Barang</label>
+                <input type="text" id="nama" required>
+            </div>
+
+            <div class="form-group">
+                <label>Kategori</label>
+                <select id="kategori">
+                    <option value="Oli">Oli</option>
+                    <option value="Kelistrikan">Kelistrikan</option>
+                    <option value="Rem">Rem</option>
+                    <option value="Mesin">Mesin</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Merek</label>
+                <select id="merek">
+                    <option value="AHM">AHM</option>
+                    <option value="NGK">NGK</option>
+                    <option value="Yamaha">Yamaha</option>
+                    <option value="Suzuki">Suzuki</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Tipe Motor</label>
+
+                <div class="motor">
+                    <label>
+                        <input type="checkbox" name="motor" value="Beat">
+                        Beat
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="motor" value="Vario">
+                        Vario
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="motor" value="Scoopy">
+                        Scoopy
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="motor" value="PCX">
+                        PCX
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="motor" value="ADV">
+                        ADV
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Volume</label>
+                <input type="text" id="volume">
+            </div>
+
+            <div class="form-group">
+                <label>Viskositas</label>
+                <input type="text" id="viskositas">
+            </div>
+
+            <div class="form-group">
+                <label>Jumlah Stok</label>
+                <input type="number" id="jumlahStok" required>
+            </div>
+
+            <div class="form-group">
+                <label>Satuan</label>
+                <select id="satuan">
+                    <option value="Pcs">Pcs</option>
+                    <option value="Botol">Botol</option>
+                    <option value="Set">Set</option>
+                    <option value="Box">Box</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Stok Minimum</label>
+                <input type="number" id="stokMinimum" required>
+            </div>
+
+            <div class="form-group">
+                <label>Harga Beli</label>
+                <input type="number" id="hargaBeli" required>
+            </div>
+
+            <div class="form-group">
+                <label>Harga Jual</label>
+                <input type="number" id="hargaJual" required>
+            </div>
+
+            <div class="form-group">
+                <label>Gudang</label>
+                <select id="gudang">
+                    <option value="Gudang A">Gudang A</option>
+                    <option value="Gudang B">Gudang B</option>
+                    <option value="Gudang C">Gudang C</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Rak</label>
+                <select id="rak">
+                    <option value="A-01">A-01</option>
+                    <option value="A-02">A-02</option>
+                    <option value="A-03">A-03</option>
+                    <option value="B-01">B-01</option>
+                    <option value="B-02">B-02</option>
+                    <option value="B-03">B-03</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Lantai</label>
+                <input type="number" id="lantai" required>
+            </div>
+
+            <div class="form-group">
+                <label>Supplier</label>
+                <select id="supplier">
+                    <option value="Astra Honda">Astra Honda</option>
+                    <option value="NGK Indonesia">NGK Indonesia</option>
+                    <option value="Yamaha Indonesia">Yamaha Indonesia</option>
+                    <option value="Suzuki Indonesia">Suzuki Indonesia</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Telepon Supplier</label>
+                <input type="text" id="telepon">
+            </div>
+
+            <div class="form-group">
+                <label>Email Supplier</label>
+                <input type="email" id="email">
+            </div>
+
+            <button type="submit">
+                Simpan
+            </button>
+
+            <button type="button" onclick="tutupForm()">
+                Batal
+            </button>
+
+        </form>
+    </div>
+
+
+    <!-- TABEL DATA -->
+    <table>
+
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Kode</th>
+                <th>Nama</th>
+                <th>Kategori</th>
+                <th>Merek</th>
+                <th>Motor</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+
+        <tbody id="tabelBarang">
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<script>
+
+const API_URL = "/api/sparepart";
+
+let semuaBarang = [];
+let modeForm = "tambah";
+let kodeEdit = null;
+
+
+// ===============================
+// AMBIL DATA
+// ===============================
+
+async function ambilData() {
+
+    try {
+
+        const response = await fetch(API_URL);
+
+        if (!response.ok) {
+            throw new Error("API tidak bisa diakses");
+        }
+
+        semuaBarang = await response.json();
+
+        document.getElementById("statusAPI").textContent = "Terhubung";
+
+        tampilkanBarang(semuaBarang);
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("statusAPI").textContent =
+            "Tidak terhubung";
+
+    }
+}
+
+
+// ===============================
+// TAMPILKAN DATA
+// ===============================
+
+function tampilkanBarang(data) {
+
+    const tabel = document.getElementById("tabelBarang");
+
+    tabel.innerHTML = "";
+
+    data.forEach(function(barang) {
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${barang.no}</td>
+
+            <td>${barang.kode_barang}</td>
+
+            <td>${barang.identitas.nama}</td>
+
+            <td>${barang.identitas.kategori}</td>
+
+            <td>${barang.identitas.merek}</td>
+
+            <td>${barang.spesifikasi.tipe_motor.join(", ")}</td>
+
+            <td>
+                <button onclick="bukaFormEdit('${barang.kode_barang}')">
+                    Edit
+                </button>
+
+                <button onclick="hapusBarang('${barang.kode_barang}')">
+                    Hapus
+                </button>
+            </td>
+        `;
+
+        tabel.appendChild(row);
+
+    });
+}
+
+
+// ===============================
+// BUKA FORM TAMBAH
+// ===============================
+
+function bukaFormTambah() {
+
+    modeForm = "tambah";
+
+    kodeEdit = null;
+
+    document.getElementById("judulForm").textContent =
+        "Tambah Barang";
+
+    document.getElementById("formContainer").style.display =
+        "block";
+
+    document.getElementById("formBarang").reset();
+
+    document
+        .querySelectorAll('input[name="motor"]')
+        .forEach(function(checkbox) {
+
+            checkbox.checked = false;
+
+        });
+
+}
+
+
+// ===============================
+// TUTUP FORM
+// ===============================
+
+function tutupForm() {
+
+    document.getElementById("formContainer").style.display =
+        "none";
+
+}
+
+
+// ===============================
+// EDIT BARANG
+// ===============================
+
+function bukaFormEdit(kode) {
+
+    const barang = semuaBarang.find(function(item) {
+
+        return item.kode_barang === kode;
+
+    });
+
+    if (!barang) {
+
+        alert("Barang tidak ditemukan");
+
+        return;
+
+    }
+
+    modeForm = "edit";
+
+    kodeEdit = kode;
+
+    document.getElementById("judulForm").textContent =
+        "Edit Barang";
+
+    document.getElementById("formContainer").style.display =
+        "block";
+
+
+    document.getElementById("nama").value =
+        barang.identitas.nama;
+
+    document.getElementById("kategori").value =
+        barang.identitas.kategori;
+
+    document.getElementById("merek").value =
+        barang.identitas.merek;
+
+    document.getElementById("volume").value =
+        barang.spesifikasi.ukuran.volume;
+
+    document.getElementById("viskositas").value =
+        barang.spesifikasi.ukuran.viskositas;
+
+
+    document
+        .querySelectorAll('input[name="motor"]')
+        .forEach(function(checkbox) {
+
+            checkbox.checked =
+                barang.spesifikasi.tipe_motor.includes(
+                    checkbox.value
+                );
+
+        });
+
+}
+
+
+// ===============================
+// SIMPAN DATA
+// ===============================
+
+document
+    .getElementById("formBarang")
+    .addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+
+        const tipeMotor = [];
+
+        document
+            .querySelectorAll('input[name="motor"]:checked')
+            .forEach(function(checkbox) {
+
+                tipeMotor.push(checkbox.value);
+
+            });
+
+
+        const data = {
+
+            identitas: {
+
+                nama: document.getElementById("nama").value,
+
+                kategori:
+                    document.getElementById("kategori").value,
+
+                merek:
+                    document.getElementById("merek").value
+
+            },
+
+            spesifikasi: {
+
+                tipe_motor: tipeMotor,
+
+                ukuran: {
+
+                    volume:
+                        document.getElementById("volume").value,
+
+                    viskositas:
+                        document.getElementById("viskositas").value
+
+                }
+
+            },
+
+            stok: {
+
+                jumlah:
+                    Number(document.getElementById("jumlahStok").value),
+
+                satuan:
+                    document.getElementById("satuan").value,
+
+                minimum:
+                    Number(document.getElementById("stokMinimum").value)
+
+            },
+
+            harga: {
+
+                beli:
+                    Number(document.getElementById("hargaBeli").value),
+
+                jual:
+                    Number(document.getElementById("hargaJual").value)
+
+            },
+
+            lokasi_gudang: {
+
+                gudang:
+                    document.getElementById("gudang").value,
+
+                rak: {
+
+                    kode:
+                        document.getElementById("rak").value,
+
+                    lantai:
+                        Number(document.getElementById("lantai").value)
+
+                }
+
+            },
+
+            supplier: {
+
+                nama:
+                    document.getElementById("supplier").value,
+
+                kontak: {
+
+                    telepon:
+                        document.getElementById("telepon").value,
+
+                    email:
+                        document.getElementById("email").value
+
+                }
+
+            }
+
+        };
+
+
+        let url = API_URL;
+        let method = "POST";
+
+
+        if (modeForm === "edit") {
+
+            url = API_URL + "/" + kodeEdit;
+
+            method = "PUT";
+
+        }
+
+
+        try {
+
+            const response = await fetch(url, {
+
+                method: method,
+
+                headers: {
+
+                    "Content-Type": "application/json"
+
+                },
+
+                body: JSON.stringify(data)
+
+            });
+
+
+            const hasil = await response.json();
+
+
+            if (!response.ok) {
+
+                alert(
+                    hasil.message ||
+                    "Gagal menyimpan data"
+                );
+
+                return;
+
+            }
+
+
+            alert(
+                modeForm === "tambah"
+                    ? "Barang berhasil ditambahkan"
+                    : "Barang berhasil diperbarui"
+            );
+
+
+            tutupForm();
+
+            await ambilData();
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert("Terjadi kesalahan saat menghubungi API");
+
+        }
+
+    });
+
+
+// ===============================
+// HAPUS BARANG
+// ===============================
+
+async function hapusBarang(kode) {
+
+    const yakin = confirm(
+        "Apakah Anda yakin ingin menghapus " +
+        kode +
+        "?"
+    );
+
+
+    if (!yakin) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const response = await fetch(
+            API_URL + "/" + kode,
+            {
+                method: "DELETE"
+            }
+        );
+
+
+        const hasil = await response.json();
+
+
+        if (!response.ok) {
+
+            alert(
+                hasil.message ||
+                "Gagal menghapus barang"
+            );
+
+            return;
+
+        }
+
+
+        alert("Barang berhasil dihapus");
+
+        await ambilData();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Terjadi kesalahan saat menghapus");
+
+    }
+
+}
+
+
+// ===============================
+// PENCARIAN
+// ===============================
+
+function cariBarang() {
+
+    const keyword =
+        document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase();
+
+
+    const hasil = semuaBarang.filter(function(barang) {
+
+        return (
+
+            barang.kode_barang
+                .toLowerCase()
+                .includes(keyword)
+
+            ||
+
+            barang.identitas.nama
+                .toLowerCase()
+                .includes(keyword)
+
+            ||
+
+            barang.identitas.kategori
+                .toLowerCase()
+                .includes(keyword)
+
+            ||
+
+            barang.identitas.merek
+                .toLowerCase()
+                .includes(keyword)
+
+        );
+
+    });
+
+
+    tampilkanBarang(hasil);
+
+}
+
+
+// ===============================
+// JALANKAN SAAT HALAMAN DIBUKA
+// ===============================
+
+ambilData();
+
+</script>
+
+</body>
+</html>

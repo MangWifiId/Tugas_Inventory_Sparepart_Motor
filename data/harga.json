@@ -1,0 +1,51 @@
+[
+  {
+    "kode_barang": "BRG-001",
+    "harga": {
+      "beli": 45000,
+      "jual": 55000
+    }
+  },
+  {
+    "kode_barang": "BRG-002",
+    "harga": {
+      "beli": 12000,
+      "jual": 18000
+    }
+  },
+  {
+    "kode_barang": "BRG-04",
+    "harga": {
+      "beli": 2,
+      "jual": 2
+    }
+  },
+  {
+    "kode_barang": "BRG-004",
+    "harga": {
+      "beli": 1000,
+      "jual": 2000
+    }
+  },
+  {
+    "kode_barang": "BRG-006",
+    "harga": {
+      "beli": 0,
+      "jual": 0
+    }
+  },
+  {
+    "kode_barang": "BRG-007",
+    "harga": {
+      "beli": 25000,
+      "jual": 35000
+    }
+  },
+  {
+    "kode_barang": "BRG-008",
+    "harga": {
+      "beli": 25000,
+      "jual": 35000
+    }
+  }
+]
